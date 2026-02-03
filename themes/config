@@ -2,8 +2,8 @@
 "modules-left": ["custom/tty"],
 "modules-center": ["custom/win"],
 "modules-right": ["battery","clock"],
-"clock": {"format": "{:%H:%M}", "interval": 60},
-"battery": {"format": "{}%","interval": 10},
+"clock": {"format": "{:%H:%M}", "interval": 55},
+"battery": {"format": "{}%","interval": 60},
 "custom/tty": {"format": "tty {}", "exec": "~/.archysystem/scripts/workspace.sh"},
 "custom/win": {"format": "{}", "exec": "~/.archysystem/scripts/window.sh"}
 }

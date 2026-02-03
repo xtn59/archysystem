@@ -4,6 +4,17 @@
 # sudo pacman -S --needed rofi hyprland swww waybar xterm hyprshot
 # Just install these yourself, please.
 
+issu="$(whoami)"
+if [[ $issu == "root" ]]; then
+	clear
+	echo
+	echo "Do not run the script with sudo / as root."
+	echo "It will change config files for root, not your user."
+	echo "Run it as following: \"./install.sh\""
+	echo
+	exit
+fi
+
 clear
 
 echo "! Make sure you install these for the full experience of archysystem:"
@@ -14,6 +25,7 @@ echo "              xterm"
 echo "              cmus"
 echo "              swww"
 echo "              rofi"
+echo "              nano"
 
 echo
 echo "! PROCEEDING WILL ERASE  A L L  YOUR CONFIG FILES (^^^ for these pkg's)."
