@@ -1,0 +1,87 @@
+#!/bin/python3
+
+from tkinter import *
+import tkinter as tk
+import os, sys, time
+from pathlib import Path
+
+_bg = 'black'
+_fg = 'white'
+_fnt = ('Misc Fixed', 10)
+
+try:
+	with open(f'{Path.home()}/.config/soda/soda.conf', 'r') as f:
+		for line in f:
+			if ':' in line:
+				key, val = (line.strip()).split(':')
+				if key == 'bg':
+					_bg = val
+				elif key == 'fg':
+					_fg = val
+				elif key == 'font':
+					font_name = val
+				elif key == 'font_size':
+					font_size = val
+	_fnt = (f'{font_name}',int(font_size))
+except Exception as NameError:
+	print("config error")
+
+_pad = Tk()
+_pad.geometry("500x300")
+_pad.title('soda')
+_pad.config(background=str(_bg))
+
+_txt = Text(background=_bg,font=_fnt,highlightthickness=1,highlightcolor=_fg,highlightbackground=_fg,cursor='hand1',foreground=_fg,insertbackground=_fg,wrap="none")
+_txt_line, _txt_column = str(_txt.index("insert")).split('.')
+_txt.place(x=-1,y=-1,width=450,height=300)
+_txt.focus()
+
+_wth = 0
+_hht = 0  
+_fil = (str(*sys.argv[1:]))
+try:
+	with open(_fil, 'rb') as f:
+		for line in f:
+			_txt.insert(END,line)
+except Exception as FileError:
+	print("no file path specified. Redirecting to soda.conf...")
+	_fil = f'{Path.home()}/.config/soda/soda.conf'
+	with open(_fil, 'rb') as f:
+		for line in f:
+			_txt.insert(END,line)
+
+_lne = Label(text=_txt_line,background=_fg,foreground=_bg,font=_fnt)
+_lne.place(x=400,y=40,width=50,height=10)
+
+def save():
+	global _fil
+	_ent = Entry(background=_fg,foreground=_bg,font=_fnt,bd=0,relief='flat',highlightcolor=_fg)
+	_ent.place(x=0,y=(_hht - 10),width=(len(_fil) + 48),height=11)
+	_ent.insert(END,_fil)
+	_ent.focus()
+	def rsave():
+		with open(_fil, 'w') as f:
+			f.write(_txt.get(1.0, END))
+			_txt.focus()
+			_ent.destroy()
+		return "break"
+	_ent.bind('<Return>', lambda event: rsave())	
+
+def upd():
+	global _wth, _hht
+
+	_wth = _pad.winfo_width()
+	_hht = _pad.winfo_height()
+	_txt.place(x=-2,y=-2,width=_wth + 3,height=_hht + 3)
+	_lne.place(x=(_wth - len(_txt_line)) - 48 ,y=(_hht - 10),width=50,height=10)
+
+def recursion_upd():
+	global _txt_line, _txt_column
+
+	_txt_line, _txt_column = str(_txt.index("insert")).split('.')
+	_lne.config(text=f'{_txt_line}@{_txt_column}')
+
+_txt.bind('<Control-o>', lambda event: [save(), "break"][1])
+_pad.bind('<Configure>', lambda event: upd())
+_pad.bind('<KeyRelease>', lambda event: recursion_upd())
+_pad.mainloop()

@@ -1,0 +1,6 @@
+set breaklonglines true
+set linenumbers true
+set nohelp true
+set numbercolor white,black
+set titlecolor  white,black
+set statuscolor white,black
