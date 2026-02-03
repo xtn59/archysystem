@@ -55,7 +55,7 @@ echo "Writing instructions to ~/.archysystem/instructions.sh ..."
 echo "
 #!/bin/bash
 
-echo \"Welcome to archysystem [0.7]\"
+echo \"Welcome to archysystem [0.7.1]\"
 echo \"What would you like help with?\"
 echo
 while true; do
