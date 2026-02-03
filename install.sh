@@ -42,6 +42,7 @@ read -p "[y] proceed? " proceeding
 
 if [[ $proceeding == "y" ]]; then
 	:
+	clear
 else
 	exit
 fi
@@ -49,7 +50,6 @@ fi
 mkdir -p $HOME/.archysystem/{scripts,themes/{white,black}}
 mkdir -p $HOME/.config/{rofi,hypr,waybar,soda}
 
-echo
 echo "Extracting scripts.."
 
 cp scripts/*.sh ~/.archysystem/scripts/
@@ -61,6 +61,7 @@ cp themes/black/* ~/.archysystem/themes/black/
 cp themes/black/.* ~/.archysystem/themes/black/
 cp themes/white/* ~/.archysystem/themes/white/
 cp themes/white/.* ~/.archysystem/themes/white/
+
 echo "Copying waybar config, fonts and backgrounds.."
 
 cp themes/config ~/.config/waybar/config
@@ -76,20 +77,13 @@ chmod +x ~/.archysystem/instructions.sh
 
 echo "You can find instructions in ~/.archysystem/instructions.sh"
 
-echo "Installed archysystem."
 echo "WIN + ALT + W  = rofi dmenu for changing themes"
 echo "WIN + M = region screenshot"
 echo "WIN + Q = rofi -show drun"
 echo "WIN + W = rofi -show window"
 echo "WIN + R = rofi -show run"
-
-echo
-
-echo "Which theme to apply?"
-echo "white: w"
-echo "black: b"
-
-echo
+echo ""
+echo "[w, b] white ? black: "
 
 read themetoapply
 
