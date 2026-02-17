@@ -82,6 +82,7 @@ echo "WIN + M = region screenshot"
 echo "WIN + Q = rofi -show drun"
 echo "WIN + W = rofi -show window"
 echo "WIN + R = rofi -show run"
+echo "WIN + F = fullscreen"
 echo ""
 echo "[w, b] white ? black: "
 

@@ -22,7 +22,7 @@ while true; do
 		echo "        Cmus (c music player)"
 		echo "        Waybar (bar for wayland systems)"
 		echo "        Nano (text / code editor)"
-		echo "        Soda (text / code editor made with python tk, made by xtn)"
+		echo "        - Soda (text / code editor made with python tk, made by xtn) not finished yet"
 		echo 
 	elif [[ $helpme == "2" ]]; then
 		echo
@@ -32,6 +32,7 @@ while true; do
 		echo "        Win + Q = run: rofi -show drun"
 		echo "        Win + W = run: rofi -show window"
 		echo "        Win + C = close window"
+		echo "        Win + F = toggle fullscreen"
 		echo "        Win + 1, 2, 3, ... 10 = change workspace"
 		echo "        Win + P = toggle selected window behavior between [floating, tiling]"
 		echo "        Win + Alt + W = change archysystem theme (run: ~/.archysystem/scripts/menu.sh)"
@@ -40,8 +41,8 @@ while true; do
 		echo
 	elif [[ $helpme == "3" ]]; then
 		echo
-		echo "To customize archysystem, simply go to $HOME/.archysystem/themes/(black or white, depending on which you want to customize) and change up any config files.
-		! Some config files start after the dot symbol, which means that you won't be able to see them with the standard "ls" command. "
+		echo "To customize archysystem, simply go to $HOME/.archysystem/themes/(black or white, depending on which you want to customize) and change up any config files."
+		echo "! Some config files start after the dot symbol, which means that you won't be able to see them with the standard \"ls\" command, use \"ls -a\". "
 		echo "When you are done with customizing, go to $HOME/.archysystem/scripts and add the entry for your new config folder (or don't add a new entry if you customized only the existing configs)."
 		echo "If you don't know how to customize xterm, rofi or anything else, then look up documentation online."
 		echo
