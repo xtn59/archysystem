@@ -38,13 +38,42 @@ printf "              ~/.config/rofi
               ~/.archysystem"
 echo
 echo
-read -p "[y] proceed? " proceeding
+read -p "[y/anything] proceed? " proceeding
+read -p "[y/anything] install graphite?" graphite
 
 if [[ $proceeding == "y" ]]; then
 	:
 	clear
 else
 	exit
+fi
+
+if [[ $graphite == "y" ]]; then
+	
+	mkdir -p ~/.config/graphite
+	touch ~/.config/graphite/graphite.conf
+	cp -r images/logo* ~/.config/graphite/
+	sudo cp -r apps/graphite /bin/
+
+	echo "
+	foreground:black
+	background:white
+	font:Misc Fixed
+	
+	directory to choose music from:$HOME
+	logo2 directory:$HOME/.config/graphite/logo2.png
+	logo3 directory:$HOME/.config/graphite/logo3.png
+	
+	send notifs on song play:0
+	
+	" > ~/.config/graphite/graphite.conf
+	
+	echo "Finished installing graphite."
+	echo "You can find help for using graphite in $HOME/.config/graphite/instructions.sh"
+	echo "Graphite is editable in /bin/graphite / $HOME/.config/graphite/graphite.conf"
+	echo "Note: graphite is a prototype at best. you can use it to make your own music player, or use it as is."
+else
+	:
 fi
 
 mkdir -p $HOME/.archysystem/{scripts,themes/{white,black}}
@@ -62,11 +91,11 @@ cp themes/black/.* ~/.archysystem/themes/black/
 cp themes/white/* ~/.archysystem/themes/white/
 cp themes/white/.* ~/.archysystem/themes/white/
 
-echo "Copying waybar config, fonts and backgrounds.."
+echo "Copying waybar config, fonts and images.."
 
 cp themes/config ~/.config/waybar/config
-cp backgrounds/black.jpg ~/.archysystem/
-cp backgrounds/white.jpg ~/.archysystem/
+cp images/black.jpg ~/.archysystem/
+cp images/white.jpg ~/.archysystem/
 sudo cp fonts/*.ttf /usr/share/fonts/TTF/
 sudo cp fonts/*.otb ~/.local/share/fonts/
 
@@ -96,4 +125,3 @@ else
 	echo "Invalid theme, applying black.."
 	nohup bash ~/.archysystem/scripts/black.sh > /dev/null 2>&1 &
 fi
-

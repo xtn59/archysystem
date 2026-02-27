@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Welcome to archysystem [0.7]"
+echo "Welcome to archysystem [0.8]"
 echo "What would you like help with?"
 echo
 while true; do

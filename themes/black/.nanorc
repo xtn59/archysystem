@@ -1,5 +1,4 @@
 set breaklonglines true
-set linenumbers true
 set nohelp true
 set numbercolor black,white
 set titlecolor  black,white
