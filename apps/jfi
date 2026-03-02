@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cp /etc/os-release /tmp/jfios
+
+disk_name=$(df -h -T / | awk -F' ' '/\// {print$1}')
+disk_frmt=$(df -h -T / | awk -F' ' '/\// {print$2}')
+disk_size=$(df -h -T / | awk -F' ' '/\// {print$3}')
+disk_used=$(df -h -T / | awk -F' ' '/\// {print$4}')
+linux_linux=$(uname -r)
+linux_distro=$(cat /tmp/jfios | awk -F'"' '/PRETTY_NAME=/ {print$2}')
+memory_size=$(free --mebi | awk -F' ' '/Mem:/ {print$2}')
+memory_used=$(free --mebi | awk -F' ' '/Mem:/ {print$3}')
+cpu_name=$(cat /proc/cpuinfo | awk -F': ' '/model name/ {print$2}' | head -n 1)
+uptime=$(uptime -p)
+
+#     Uncomment for gpu
+#     gpu_name=$(lspci | grep -i VGA | awk -F'VGA compatible controller: ' '{print$2}' | head -n 1)
+
+
+echo
+echo "$linux_distro @ $linux_linux"
+echo "$uptime"
+echo "$cpu_name"
+
+#     Uncomment for gpu
+#     echo "$gpu_name"
+
+echo "$memory_used MiB / $memory_size MiB @ /dev/mem"
+echo "$disk_used / $disk_size @ $disk_name $disk_frmt"
+echo
+
+rm /tmp/jfios
