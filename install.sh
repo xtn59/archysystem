@@ -74,7 +74,6 @@ if [[ $graphite == "y" ]]; then
 	" > ~/.config/graphite/graphite.conf
 	
 	echo "Finished installing graphite."
-	echo "You can find help for using graphite in $HOME/.config/graphite/instructions.sh"
 	echo "Graphite is editable in /bin/graphite / $HOME/.config/graphite/graphite.conf"
 	echo "Note: graphite is a prototype at best. you can use it to make your own music player, or use it as is."
 else
