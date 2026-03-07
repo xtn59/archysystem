@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# echo "Installing needed packages."
-# sudo pacman -S --needed rofi hyprland swww waybar xterm hyprshot
-# Just install these yourself, please.
+clear
+
+read -p "[y,anything] install needed packages with sudo pacman -S xyz? " install
+
+if [[ $install == "y" ]]; then
+	echo "Installing needed packages."
+	sudo pacman -S --needed rofi hyprland swww waybar xterm hyprshot xorg-xrdb
+fi
 
 issu="$(whoami)"
-
-# Delete this if issu block (is super user?)
-
+# Delete this "if issu" block (Is Super User?)
 if [[ $issu == "root" ]]; then
 	clear
 	echo
@@ -43,15 +46,15 @@ printf "              ~/.config/rofi
 echo
 echo
 read -p "[y/anything] proceed? " proceeding
-read -p "[y/anything] install graphite? " graphite
-read -p "[y/anything] install justfetchit? " justfetchit
 
 if [[ $proceeding == "y" ]]; then
 	:
-	clear
 else
 	exit
 fi
+
+read -p "[y/anything] install graphite? " graphite
+read -p "[y/anything] install justfetchit? " justfetchit
 
 if [[ $graphite == "y" ]]; then
 	

@@ -11,11 +11,10 @@ linux_distro=$(cat /tmp/jfios | awk -F'"' '/PRETTY_NAME=/ {print$2}')
 memory_size=$(free --mebi | awk -F' ' '/Mem:/ {print$2}')
 memory_used=$(free --mebi | awk -F' ' '/Mem:/ {print$3}')
 cpu_name=$(cat /proc/cpuinfo | awk -F': ' '/model name/ {print$2}' | head -n 1)
+gpu_name=$(lspci | grep -i VGA | awk -F'VGA compatible controller: ' '{print$2}' | head -n 1)
 uptime=$(uptime -p)
-
-#     Uncomment for gpu
-#     gpu_name=$(lspci | grep -i VGA | awk -F'VGA compatible controller: ' '{print$2}' | head -n 1)
-
+battery_name=$(upower -b | awk -F' ' '/native-path/ {print$2}')
+battery_usage=$(upower -b | awk -F' ' '/percentage:/ {print$2}')
 
 echo
 echo "$linux_distro @ $linux_linux"
@@ -27,6 +26,7 @@ echo "$cpu_name"
 
 echo "$memory_used MiB / $memory_size MiB @ /dev/mem"
 echo "$disk_used / $disk_size @ $disk_name $disk_frmt"
+echo "$battery_name @ $battery_usage"
 echo
 
 rm /tmp/jfios
