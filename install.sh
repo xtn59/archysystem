@@ -10,7 +10,6 @@ if [[ $install == "y" ]]; then
 fi
 
 issu="$(whoami)"
-# Delete this "if issu" block (Is Super User?)
 if [[ $issu == "root" ]]; then
 	clear
 	echo
@@ -18,8 +17,8 @@ if [[ $issu == "root" ]]; then
 	echo "It will change config files for root, not your user."
 	echo "Run it as following: \"./install.sh\""
 	echo "If you do want to run this as root,"
-	echo "delete the few lines that make this text appear in the script."
-	exit
+	echo "delete the last line with exit (one below)."
+	exit # Delete this
 fi
 
 clear
@@ -53,77 +52,7 @@ else
 	exit
 fi
 
-read -p "[y/anything] install graphite? " graphite
 read -p "[y/anything] install justfetchit? " justfetchit
-
-if [[ $graphite == "y" ]]; then
-	
-	mkdir -p ~/.config/graphite
-	touch ~/.archysystem/themes/black/graphite.conf
-	touch ~/.archysystem/themes/white/graphite.conf
-	cp -r images/logo* ~/.config/graphite/
-	sudo cp -r apps/graphite /bin/
-
-	echo "
-foreground = black;
-background = white;
-font = Misc Fixed;
-	
-directory to choose music from = $HOME;
-logo2 directory = $HOME/.config/graphite/logo2.png;
-logo3 directory = $HOME/.config/graphite/logo3.png;
-	
-send notifs on song play = 0;
-
-dir x = 0;
-dir y = 215;
-play x = 35;
-play y = 215;
-vol x = 105;
-vol y = 215;
-passed x = 230;
-passed y = 222;
-artist x = 0;
-artist y = 13;
-song x = 0;
-song y = 0;
-status x = 220;
-status y = 0;
-" > ~/.archysystem/themes/white/graphite.conf
-
-	echo "
-foreground = white;
-background = black;
-font = Misc Fixed;
-	
-directory to choose music from = $HOME;
-logo2 directory = $HOME/.config/graphite/logo2.png;
-logo3 directory = $HOME/.config/graphite/logo3.png;
-	
-send notifs on song play = 0;
-
-dir x = 0;
-dir y = 215;
-play x = 35;
-play y = 215;
-vol x = 105;
-vol y = 215;
-passed x = 230;
-passed y = 222;
-artist x = 0;
-artist y = 13;
-song x = 0;
-song y = 0;
-status x = 220;
-status y = 0;
-" > ~/.archysystem/themes/black/graphite.conf
-
-	echo "Finished installing graphite."
-	echo "Graphite is editable in /bin/graphite / $HOME/.config/graphite/graphite.conf / $HOME/.archysystem/themes/*/graphite.conf"
-	echo "Note: graphite is a prototype at best. you can use it to make your own music player, or use it as is."
-else
-	:
-fi
 
 if [[ $justfetchit == "y" ]]; then
 	sudo cp -r apps/jfi /bin/justfetchit
@@ -134,7 +63,7 @@ else
 fi
 
 mkdir -p $HOME/.archysystem/{scripts,themes/{white,black}}
-mkdir -p $HOME/.config/{rofi,hypr,waybar,soda}
+mkdir -p $HOME/.config/{rofi,hypr,waybar}
 
 echo "Extracting scripts.."
 
