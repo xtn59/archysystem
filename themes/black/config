@@ -6,6 +6,5 @@
 "clock": {"format": "{:%H:%M}", "interval": 55},
 "battery": {"format": "{}%","interval": 60},
 "custom/tty": {"format": "tty {}", "exec": "~/.archysystem/scripts/workspace.sh"},
-"custom/win": {"format": "{}", "exec": "~/.archysystem/scripts/window.sh"}
 
 }

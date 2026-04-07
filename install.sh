@@ -6,7 +6,7 @@ read -p "[y,anything] install needed packages with sudo pacman -S xyz? " install
 
 if [[ $install == "y" ]]; then
 	echo "Installing needed packages."
-	sudo pacman -S --needed rofi hyprland swww waybar xterm hyprshot xorg-xrdb
+	sudo pacman -S --needed rofi hyprland swww waybar xterm hyprshot xorg-xrdb nano
 fi
 
 issu="$(whoami)"
@@ -23,26 +23,9 @@ fi
 
 clear
 
-echo "! Make sure you install these for the full experience of archysystem:"
 echo
-echo "              waybar"
-echo "              hyprland"
-echo "              xterm"
-echo "              cmus"
-echo "              swww"
-echo "              rofi"
-echo "              nano"
-
-echo
-echo "! PROCEEDING WILL ERASE  A L L  YOUR CONFIG FILES (^^^ for these pkg's)."
-echo "! THE FOLLOWING FOLDERS WILL BE CREATED / OVERRIDEN IF EXISTENT:"
-echo
-printf "              ~/.config/rofi
-              ~/.config/hypr
-              ~/.config/cmus
-              ~/.config/waybar
-              ~/.archysystem"
-echo
+echo "Proceeding will overwrite these folders;"
+printf "~/.config/rofi ~/.config/hypr ~/.config/cmus \n~/.config/waybar ~/.archysystem"
 echo
 read -p "[y/anything] proceed? " proceeding
 
@@ -62,52 +45,31 @@ else
 	:
 fi
 
-mkdir -p $HOME/.archysystem/{scripts,themes/{white,black}}
+mkdir -p $HOME/.archysystem/{scripts,wallpapers,themes/{white,black,modern}}
 mkdir -p $HOME/.config/{rofi,hypr,waybar}
 
 echo "Extracting scripts.."
 
-cp scripts/*.sh ~/.archysystem/scripts/
+cp scripts/* ~/.archysystem/scripts/
 mv ~/.archysystem/scripts/instructions.sh ~/.archysystem/instructions.sh
 
 echo "Copying black and white theme dotfiles.."
 
-cp themes/black/* ~/.archysystem/themes/black/
-cp themes/black/.* ~/.archysystem/themes/black/
-cp themes/white/* ~/.archysystem/themes/white/
-cp themes/white/.* ~/.archysystem/themes/white/
+cp -r themes/* ~/.archysystem/themes/
 
-echo "Copying waybar config, fonts and images.."
-
-cp themes/config ~/.config/waybar/config
-cp images/black.jpg ~/.archysystem/
-cp images/white.jpg ~/.archysystem/
+echo "Copying waybar config, fonts and wallpapers.."
+cp wallpapers/* ~/.archysystem/wallpapers/
 sudo cp fonts/*.ttf /usr/share/fonts/TTF/
 sudo cp fonts/*.otb ~/.local/share/fonts/
 
 echo "Giving permission to scripts.."
 
-chmod +x ~/.archysystem/scripts/*.sh
+chmod +x ~/.archysystem/scripts/
 chmod +x ~/.archysystem/instructions.sh
 
 echo "You can find instructions in ~/.archysystem/instructions.sh"
 
-echo "WIN + ALT + W  = rofi dmenu for changing themes"
-echo "WIN + M = region screenshot"
-echo "WIN + Q = rofi -show drun"
-echo "WIN + W = rofi -show window"
-echo "WIN + R = rofi -show run"
-echo "WIN + F = fullscreen"
-echo ""
-echo "[w, b] white ? black: "
+echo "You can choose a theme now, or later by using   win + alt + w."
 
-read themetoapply
-
-if [[ $themetoapply == "w" ]]; then
-	nohup bash ~/.archysystem/scripts/white.sh > /dev/null 2>&1 &
-elif [[ $themetoapply == "b" ]]; then
-	nohup bash ~/.archysystem/scripts/black.sh > /dev/null 2>&1 &
-else
-	echo "Invalid theme, applying black.."
-	nohup bash ~/.archysystem/scripts/black.sh > /dev/null 2>&1 &
-fi
+swww-daemon & > /dev/null &
+bash ~/.archysystem/scripts/menu.sh & > /dev/null &

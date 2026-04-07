@@ -1,19 +1,20 @@
 #!/bin/bash
 
-theme=$(printf "black\nwhite" | rofi -dmenu)
+theme=$(printf "$(ls ~/.archysystem/themes/)" | rofi -dmenu)
 
 if [[ $theme != "" ]]; then
-	cp -r ~/.archysystem/themes/$theme/.Xresources ~/
-	cp -r ~/.archysystem/themes/$theme/.nanorc ~/
-	cp -r ~/.archysystem/themes/$theme/hyprland.conf ~/.config/hypr/
-	cp -r ~/.archysystem/themes/$theme/config.rasi ~/.config/rofi/
-	cp -r ~/.archysystem/themes/$theme/style.css ~/.config/waybar/
-	cp -r ~/.archysystem/themes/$theme/graphite.conf ~/.config/graphite/
-	cp -r ~/.archysystem/themes/$theme/autosave ~/.config/cmus/
+	cp -r ~/.archysystem/themes/$theme/.Xresources       ~/
+	cp -r ~/.archysystem/themes/$theme/.nanorc           ~/
+	cp -r ~/.archysystem/themes/$theme/hyprland.conf     ~/.config/hypr/
+	cp -r ~/.archysystem/themes/$theme/config.rasi       ~/.config/rofi/
+	cp -r ~/.archysystem/themes/$theme/style.css         ~/.config/waybar/
+	cp -r ~/.archysystem/themes/$theme/config            ~/.config/waybar/
+	cp -r ~/.archysystem/themes/$theme/graphite.conf     ~/.config/graphite/
+	cp -r ~/.archysystem/themes/$theme/autosave          ~/.config/cmus/
 fi
 
-xrdb -merge ~/.Xresources
-swww img ~/.archysystem/$theme.jpg --transition-step 255 > /dev/null &
+xrdb -merge ~/.Xresources &
+swww img ~/.archysystem/wallpapers/$theme.jpg --transition-step 255 > /dev/null &
 pkill waybar 
 waybar > /dev/null &
-hyprctl reload
+hyprctl reload &

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Welcome to archysystem [0.8]"
+echo "Welcome to archysystem [1.6]"
 echo "What would you like help with?"
 echo
 while true; do
@@ -11,7 +11,7 @@ while true; do
 	echo
 	
 	read -p "[1,2,3] " helpme
-	
+	clear	
 	if [[ $helpme == "1" ]]; then
 		echo
 		echo "archysystem is a fully customizable and hand-crafted list of config files for many software, such as"
@@ -31,6 +31,7 @@ while true; do
 		echo "        Win + Space = open xterm"
 		echo "        Win + Q = run: rofi -show drun"
 		echo "        Win + W = run: rofi -show window"
+		echo "        Win + W = run: rofi -show run"
 		echo "        Win + C = close window"
 		echo "        Win + F = toggle fullscreen"
 		echo "        Win + 1, 2, 3, ... 10 = change workspace"
@@ -41,10 +42,9 @@ while true; do
 		echo
 	elif [[ $helpme == "3" ]]; then
 		echo
-		echo "To customize archysystem, simply go to $HOME/.archysystem/themes/(black or white, depending on which you want to customize) and change up any config files."
-		echo "! Some config files start after the dot symbol, which means that you won't be able to see them with the standard \"ls\" command, use \"ls -a\". "
-		echo "When you are done with customizing, go to $HOME/.archysystem/scripts and add the entry for your new config folder (or don't add a new entry if you customized only the existing configs)."
-		echo "If you don't know how to customize xterm, rofi or anything else, then look up documentation online."
+		echo "To customize archysystem, go to ~/.archysystem/themes and create a new folder with the name being the name of your theme."
+		echo "There, create hyprland.conf, and other config files."
+		echo "Maybe tweak ~/.archysystem/scripts/menu.sh to your liking, it handles changing themes."
 		echo
 	elif [[ $helpme == "q" ]]; then
 		clear
@@ -53,6 +53,8 @@ while true; do
 		echo
 		echo "That is not an option."
 		echo
+		sleep 1
+		clear
 	fi
 done
 

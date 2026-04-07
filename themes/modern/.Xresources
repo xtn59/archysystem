@@ -1,0 +1,4 @@
+xterm*Background: #FFFFFF
+xterm*Foreground: #000000
+xterm*saveLines: 100
+
