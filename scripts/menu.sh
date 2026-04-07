@@ -9,7 +9,6 @@ if [[ $theme != "" ]]; then
 	cp -r ~/.archysystem/themes/$theme/config.rasi       ~/.config/rofi/
 	cp -r ~/.archysystem/themes/$theme/style.css         ~/.config/waybar/
 	cp -r ~/.archysystem/themes/$theme/config            ~/.config/waybar/
-	cp -r ~/.archysystem/themes/$theme/graphite.conf     ~/.config/graphite/
 	cp -r ~/.archysystem/themes/$theme/autosave          ~/.config/cmus/
 fi
 
