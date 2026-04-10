@@ -68,5 +68,5 @@ echo "You can find instructions in ~/.archysystem/instructions.sh"
 
 echo "You can choose a theme now, or later by using   win + alt + w."
 
-swww-daemon & > /dev/null &
+awww-daemon & > /dev/null &
 bash ~/.archysystem/scripts/menu.sh & > /dev/null &
