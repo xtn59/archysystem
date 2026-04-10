@@ -2,13 +2,6 @@
 
 clear
 
-read -p "[y,anything] install needed packages with sudo pacman -S xyz? " install
-
-if [[ $install == "y" ]]; then
-	echo "Installing needed packages."
-	sudo pacman -S --needed rofi hyprland swww waybar xterm hyprshot xorg-xrdb nano
-fi
-
 issu="$(whoami)"
 if [[ $issu == "root" ]]; then
 	clear
@@ -20,6 +13,10 @@ if [[ $issu == "root" ]]; then
 	echo "delete the last line with exit (one below)."
 	exit # Delete this
 fi
+
+echo "Installing needed packages."
+sudo pacman -S --needed rofi hyprland awww waybar xterm hyprshot xorg-xrdb nano xorg-fonts-misc
+
 
 clear
 

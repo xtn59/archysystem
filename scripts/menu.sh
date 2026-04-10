@@ -13,7 +13,7 @@ if [[ $theme != "" ]]; then
 fi
 
 xrdb -merge ~/.Xresources &
-swww img ~/.archysystem/wallpapers/$theme.jpg --transition-step 255 > /dev/null &
+awww img ~/.archysystem/wallpapers/$theme.* --transition-step 255 > /dev/null &
 pkill waybar 
 waybar > /dev/null &
 hyprctl reload &
