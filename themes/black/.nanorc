@@ -1,5 +1,19 @@
-set breaklonglines true
-set nohelp true
-set numbercolor black,white
-set titlecolor  black,white
-set statuscolor black,white
+set boldtext      true
+set autoindent    true
+set nohelp        true
+set mouse         true
+set minibar       false
+set backup        true
+set casesensitive true
+set quickblank    true
+set zero          true
+set backupdir     /root/.nanobackups
+set jumpyscrolling true
+
+set numbercolor   black,white
+set titlecolor    black,white
+set statuscolor   black,white
+
+syntax c ".c"
+color bold,white,black "include"
+color bold,white,black "<[^>]*>"
